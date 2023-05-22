@@ -1,12 +1,14 @@
 <template>
   <div v-show="posts.length > 0">
     <h3>List of posts</h3>
-    <PostItem
-        v-for="post in posts"
-        :post="post"
-        :key="post.id"
-        @remove="$emit('remove', post)"
-    />
+    <transition-group name="post-list">
+      <PostItem
+          v-for="post in posts"
+          :post="post"
+          :key="post.id"
+          @remove="$emit('remove', post)"
+      />
+    </transition-group>
   </div>
   <h2 v-show="posts.length === 0" style="color:red; align-self: center">
     Post list is empty
@@ -15,9 +17,10 @@
 
 <script>
 import PostItem from "@/components/PostItem.vue";
+import MyInput from "@/components/UI/MyInput.vue";
 
 export default {
-  components: {PostItem},
+  components: {MyInput, PostItem},
   props: {
     posts: {
       type: Array,
@@ -28,5 +31,23 @@ export default {
 </script>
 
 <style>
+.post-list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
 
+.post-list-enter-active,
+.post-list-leave-active {
+  transition: all 0.4s ease;
+}
+
+.post-list-enter-from,
+.post-list-leave-to {
+  opacity: 0;
+  transform: translateX(130px);
+}
+
+.post-list-move {
+  transition: transform 0.5s ease;
+}
 </style>

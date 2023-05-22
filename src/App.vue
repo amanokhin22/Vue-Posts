@@ -1,61 +1,18 @@
 <template>
+  <navbar></navbar>
   <div class="app">
-    <h1>Posts page</h1>
-    <my-button style="align-self: flex-start; margin: 15px 0; "
-               @click="showDialog"
-    >Create post
-    </my-button>
-    <my-dialog v-model:show="dialogVisible">
-      <PostForm
-          @create="createPost"
-      />
-    </my-dialog>
-    <PostList
-        :posts="posts"
-        @remove="removePost"
-    />
+    <RouterView>
+
+    </RouterView>
   </div>
 </template>
 
 <script>
-import PostList from "@/components/PostList.vue";
-import PostForm from "@/components/PostForm.vue";
-import MyDialog from "@/components/UI/MyDialog.vue";
-import MyButton from "@/components/UI/MyButton.vue";
-import axios from "axios";
+import Navbar from "@/components/Navbar.vue";
 
 export default {
-  components: {
-    MyButton,
-    MyDialog,
-    PostForm, PostList
-  },
-  data() {
-    return {
-      posts: [],
-      dialogVisible: false,
-    }
-  },
-  methods: {
-    createPost(post) {
-      this.posts.push(post);
-      this.dialogVisible = false;
-    },
-    removePost(post) {
-      this.posts = this.posts.filter(p => p.id !== post.id)
-    },
-    showDialog() {
-      this.dialogVisible = true
-    },
-    async fetchPosts() {
-      try {
-        const response = await axios.get('https://jsonplaceholder.typicode.com/posts?_limit=10');
-        this.posts = response.data;
-      } catch (e) {
-        alert('ERROR')
-      }
-    }
-  }
+  components: {Navbar}
+
 }
 </script>
 

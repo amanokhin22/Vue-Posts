@@ -40,7 +40,7 @@ export default {
         body: '',
       }
     }
-  }
+  },
 }
 </script>
 
