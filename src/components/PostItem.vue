@@ -8,7 +8,6 @@
     <div class="post__btns">
       <MyButton
           @click="$router.push(`/posts/${post.id}`)"
-
       >
         Open
       </MyButton>

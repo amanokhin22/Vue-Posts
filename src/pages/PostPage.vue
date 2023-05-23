@@ -4,10 +4,12 @@
     <MyInput
         v-model="searchQuery"
         placeholder="Search..."
+        v-focus
     />
     <div class="app__btns">
-      <my-button style="align-self: flex-start; "
-                 @click="showDialog"
+      <my-button
+          style="align-self: flex-start; "
+          @click="showDialog"
       >Create post
       </my-button>
       <MySelect
@@ -29,19 +31,6 @@
     <div ref="observer" class="observer">
 
     </div>
-    <!--    <div class="page__wrapper">-->
-    <!--      <div-->
-    <!--          v-for="pageNumber in totalPages"-->
-    <!--          :key="pageNumber"-->
-    <!--          class="page"-->
-    <!--          :class="{-->
-    <!--          'current-page': page === pageNumber-->
-    <!--      }"-->
-    <!--          @click="changePage(pageNumber)"-->
-    <!--      >-->
-    <!--      {{ pageNumber }}-->
-    <!--    </div>-->
-    <!--  </div>-->
   </div>
 </template>
 
@@ -60,7 +49,7 @@ export default {
     MySelect,
     MyButton,
     MyDialog,
-    PostForm, PostList
+    PostForm, PostList,
   },
   data() {
     return {
@@ -89,9 +78,6 @@ export default {
     showDialog() {
       this.dialogVisible = true
     },
-    // changePage(pageNumber) {
-    //   this.page = pageNumber
-    // },
     async fetchPosts() {
       try {
         this.isPostsLoading = true
@@ -147,11 +133,6 @@ export default {
       return this.sortedPosts.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
-  // watch: {
-  //   page() {
-  //     this.fetchPosts()
-  //   }
-  // }
 }
 </script>
 
@@ -162,23 +143,4 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-
-.page__wrapper {
-  display: flex;
-  margin-top: 15px;
-  align-self: center;
-  gap: 3px;
-}
-
-.page {
-  border: 1px solid black;
-  border-radius: 20px;
-  padding: 10px;
-}
-
-.current-page {
-  background-color: teal;
-  color: white;
-}
-
 </style>

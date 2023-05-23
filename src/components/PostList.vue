@@ -1,5 +1,5 @@
 <template>
-  <div v-show="posts.length > 0">
+  <div v-if="posts.length > 0">
     <h3>List of posts</h3>
     <transition-group name="post-list">
       <PostItem
@@ -10,17 +10,16 @@
       />
     </transition-group>
   </div>
-  <h2 v-show="posts.length === 0" style="color:red; align-self: center">
+  <h2 v-else style="color:red; align-self: center">
     Post list is empty
   </h2>
 </template>
 
 <script>
 import PostItem from "@/components/PostItem.vue";
-import MyInput from "@/components/UI/MyInput.vue";
 
 export default {
-  components: {MyInput, PostItem},
+  components: {PostItem},
   props: {
     posts: {
       type: Array,

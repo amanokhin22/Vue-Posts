@@ -1,6 +1,6 @@
 <template>
   <select
-      v-model="modelValue"
+      :value="modelValue"
       @change="changeOption"
   >
     <option disabled value=" ">Select from the list</option>
@@ -9,7 +9,8 @@
         :key="option.value"
         :value="option.value"
     >
-      {{ option.name }}</option>
+      {{ option.name }}
+    </option>
   </select>
 </template>
 
@@ -29,10 +30,11 @@ export default {
     changeOption(event) {
       this.$emit("update:modelValue", event.target.value)
     }
-  }
+  },
+
 }
 </script>
 
-<style >
+<style>
 
 </style>

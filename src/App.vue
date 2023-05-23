@@ -1,9 +1,7 @@
 <template>
   <navbar></navbar>
   <div class="app">
-    <RouterView>
-
-    </RouterView>
+    <RouterView></RouterView>
   </div>
 </template>
 
@@ -12,7 +10,6 @@ import Navbar from "@/components/Navbar.vue";
 
 export default {
   components: {Navbar}
-
 }
 </script>
 
